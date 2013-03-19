@@ -19,6 +19,10 @@ distance *initDistance ();
 
 point *initRandomPoint();
 
+point **initArrayofNRandomPoints (int n);
+
+point **initArrayofNPoints (int n);
+
 distance *initDistanceBetween (point *p1, point *p2);
 
 float distanceBetween (point *p1, point *p2);

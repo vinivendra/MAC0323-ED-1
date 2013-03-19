@@ -1,4 +1,5 @@
 #include "Pontos.h"
+#include <math.h>
 
 point *initPoint (){
     point *result = malloc (sizeof(point));
@@ -20,6 +21,32 @@ point *initRandomPoint () {
     return result;
 }
 
+point **initArrayofNRandomPoints (int n) {
+    point **result =  malloc (n*sizeof(**result));
+    int i = 0;
+    for (i = 0; i < n; i ++) {
+        result[i] = malloc (sizeof(point));
+    }
+    for (i = 0; i < n; i++) {
+        result[i]->x = rand() / (float)RAND_MAX;
+        result[i]->y = rand() / (float)RAND_MAX;
+    }
+    return result;
+}
+
+point **initArrayofNPoints (int n) {
+    point **result = malloc (n*sizeof(**result));
+    int i = 0;
+    for (i = 0; i < n; i ++) {
+        result[i] = malloc (sizeof(point));
+    }
+    for (i = 0; i < n; i++) {
+        result[i]->x = 0;
+        result[i]->y = 0;
+    }
+    return result;
+}
+
 distance *initDistanceBetween (point *p1, point *p2) {
     distance *result = malloc (sizeof(distance));
     result->p1 = p1;
@@ -33,7 +60,7 @@ float distanceBetween (point *p1, point *p2) {
 }
 
 float square (float value) {
-    return value*value;
+    return value *value;
 }
 
 int distanceHasPoint (distance *distance, point *p1) {
