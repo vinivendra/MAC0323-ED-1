@@ -59,6 +59,10 @@ float distanceBetween (point *p1, point *p2) {
     return sqrt(square(p1->x-p2->x) + square(p1->y-p2->y));
 }
 
+float squaredDistanceBetween (point *p1, point *p2) {
+    return ((p1->x-p2->x)*(p1->x-p2->x)) + ((p1->y-p2->y)*(p1->y-p2->y));
+}
+
 float square (float value) {
     return value *value;
 }
@@ -69,5 +73,17 @@ int distanceHasPoint (distance *distance, point *p1) {
     return 0;
 }
 
-
+void insertPointInCell (point *point, cell *celula) {
+    if (celula->point == NULL) {
+        celula = malloc(sizeof(cell));
+        celula->prox = NULL;
+        celula->point = point;
+    }
+    else {
+        cell *nova = malloc(sizeof(*nova));
+        nova->prox = celula->prox;
+        celula->prox = nova;
+        nova->point = point;
+    }
+}
 
