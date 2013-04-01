@@ -105,6 +105,8 @@ int main (int argc, char **argv) {
             return 0;
         }
         
+        printf("firstPoint:%f, %f\n", firstPoint->x, firstPoint->y);
+        
         cont = linkAround(firstPoint, grid, d);
         
         if (cont == n) {
@@ -127,15 +129,25 @@ int main (int argc, char **argv) {
 }
 
 int linkAround (point *p, cell ***grid, float d) {
+    printf("Link around:%f %f.\n", p->x, p->y);
+    printf("1");
     p->link = 1;
+    printf("1");
     cell *s;
+    printf("2");
     int cont = 0; int i, j;
     for (i = p->x/d +1 -1; i <= p->x/d +1 +1; i++) {
+        printf("3");
         for (j = p->y/d +1 -1; j <= p->y/d +1 +1; j++) {
+            printf("4");
             for (s = grid[i][j]; s->prox != NULL; s = s->prox) {
+                printf("5");
                 if (s->prox->point->link==0 && squaredDistanceBetween(p, s->prox->point) <= (d*d)) {
+                    printf("6");
                     s->prox->point->link = 1;
+                    printf("7");
                     cont = linkAround(s->prox->point, grid, d);
+                    printf("8");
                 }
             }
         }
@@ -162,7 +174,8 @@ void insertRandomPointsInGrid (cell ***grid, float d, int n) {
 int insertUserPointersInGrid (cell ***grid, float d) {
     
     int x = 0; int y = 0; int n = 0;
-    while (scanf("%d %d", &x, &y) != EOF) {
+    /*printf ("%d\n", scanf("%d %d", &x, &y));*/
+    while (scanf("%d %d", &x, &y) == 1) {
         cell *cab = grid[(int)(x/d +1)][(int)(y/d + 1)]; /*pointeiro para a cabeca da lista do grid na posição em que o novo ponto deve ser inserido*/
         point newPoint;/*allocação de memória para a nova célula e seu respectivo ponto*/
         cell newCell;
@@ -174,6 +187,7 @@ int insertUserPointersInGrid (cell ***grid, float d) {
         cab->prox = &newCell;
         n++;/*Incrementa o n, valor que será retornado no fim da função*/
     }
+    printf("Pontos gerados.\n");
     return n;
 }
 
