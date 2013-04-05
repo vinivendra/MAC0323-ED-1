@@ -6,14 +6,21 @@ typedef struct point{
     float x;
     float y;
     int link;
+<<<<<<< HEAD
     int n;
+=======
+>>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
 } point;
 
 typedef struct cell{
     point *point;
+<<<<<<< HEAD
     struct cell *prox; /*proximo no grid*/
     struct cell *next; /*proximo na lista de (des)conectados*/
     struct cell *prev; /*anterior na lista de (des)conectados*/
+=======
+    struct cell *prox;
+>>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
 } cell;
 
 typedef struct distance{
@@ -49,4 +56,8 @@ float square (float value);
 
 int distanceHasPoint (distance *distance, point *p1);
 
+<<<<<<< HEAD
 void insertPointInCell (point *point, cell *celula);
+=======
+void insertPointInCell (point *point, cell *celula);
+>>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
