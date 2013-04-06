@@ -1,0 +1,76 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		24FF2EC31707CC3E000A2AEF /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		24FF2EC71707CC3E000A2AEF /* Pontos.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Pontos.c; sourceTree = "<group>"; };
+		24FF2EC81707CC3E000A2AEF /* Pontos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pontos.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		24FF2EBA1707CC30000A2AEF = {
+			isa = PBXGroup;
+			children = (
+				24FF2EC31707CC3E000A2AEF /* main.c */,
+				24FF2EC71707CC3E000A2AEF /* Pontos.c */,
+				24FF2EC81707CC3E000A2AEF /* Pontos.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		24FF2EBB1707CC30000A2AEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 24FF2EBE1707CC30000A2AEF /* Build configuration list for PBXProject "ED1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 24FF2EBA1707CC30000A2AEF;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		24FF2EBF1707CC30000A2AEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		24FF2EC01707CC30000A2AEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24FF2EBE1707CC30000A2AEF /* Build configuration list for PBXProject "ED1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24FF2EBF1707CC30000A2AEF /* Debug */,
+				24FF2EC01707CC30000A2AEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 24FF2EBB1707CC30000A2AEF /* Project object */;
+}

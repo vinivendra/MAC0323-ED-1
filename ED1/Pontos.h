@@ -50,4 +50,3 @@ float square (float value);
 int distanceHasPoint (distance *distance, point *p1);
 
 void insertPointInCell (point *point, cell *celula);
-
