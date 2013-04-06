@@ -5,7 +5,6 @@
 #include "Pontos.h"
 #define STRINGMAX 80
 
-<<<<<<< HEAD
 int linkAroundTheWorld (point *p, cell ***grid, float d);
 void insertRandomPointsInGrid (cell ***grid, float d, int n);
 int insertUserPointersInGrid (cell ***grid, float d);
@@ -14,12 +13,9 @@ void printDebug (cell ***grid, int g, cell *conectados);
 aresta *mergeSort (aresta *arestas, int size);
 aresta *merge (aresta* a, int n, aresta* b, int m);
 int eSuficiente (float d, cell *desconectados, int n);
-=======
-int linkAround (point *p, cell ***grid, float d);
-void insertRandomPointsInGrid (cell ***grid, float d, int n);
-int insertUserPointersInGrid (cell ***grid, float d);
-point *startingPoint (cell ***grid, int g);
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
+
+void initGrid (cell ***grid, int g);
+
 
 int main (int argc, char **argv) {
 
@@ -32,7 +28,6 @@ int main (int argc, char **argv) {
 
     int i = 0;
     int j = 0;
-<<<<<<< HEAD
     int x = 0;
     int y = 0;
     int cont = 0;
@@ -59,15 +54,6 @@ int main (int argc, char **argv) {
     tail->prev = desconectados;
     tail->point = NULL;
 
-=======
-    int cont = 0;
-    float g = 0;
-    
-    point *firstPoint;
-    
-    cell ***grid = NULL;
-
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
 	printf("Bem vindos ao programa do vini limdo =3\n");
 
     for (i = 1; i < argc; i ++) { /*For para ler os parametros*/
@@ -83,11 +69,7 @@ int main (int argc, char **argv) {
         }
         else if (parametro[1] == 'd') {
             d = atof(&parametro[2]);
-<<<<<<< HEAD
             g = 1.0/d+1;
-=======
-            g = 1.0/d;
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
         }
         else if (parametro[1] == 'v') {
             v = 1;
@@ -100,11 +82,7 @@ int main (int argc, char **argv) {
                 printf ("Erro; falta o d.\n");
                 return 0; /*Sair bonitinho*/
             }
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
             printf ("Por favor, digite os pontos desejados e pressione ctrl+d no final.\n");
             grid = malloc((g+2)*sizeof(cell **));
             for (i = 0; i<g+2; i++) {
@@ -116,7 +94,6 @@ int main (int argc, char **argv) {
                     grid[i][j] = &newCell;
                 }
             }
-<<<<<<< HEAD
 
             while (scanf("%d %d", &x, &y) == 1) {
                 cell *cab = grid[(int)(x/d +1)][(int)(y/d + 1)];    /*pointeiro para a cabeca da lista do grid na posição em que o novo ponto deve ser inserido*/
@@ -141,7 +118,6 @@ int main (int argc, char **argv) {
 
         printf ("Segunda forma.\n");
 
-
         printf ("Criando o grid....\n");
         grid = malloc((g+2)*sizeof(cell **));       /*malloc a da 1a dimensao*/
         for (i = 0; i<g+2; i++) {
@@ -158,7 +134,7 @@ int main (int argc, char **argv) {
         printf ("Grid criado.\nGerando pontos aleatórios....\n");
 
         for (i = 0; i < n; i ++) {                  /*coloca valores aleatórios no grid*/
-            cell *cab = malloc(sizeof(cell *));                             /*Ponteiro para a cabeça da lista no lugar certo do grid*/
+            cell *cab;                             /*Ponteiro para a cabeça da lista no lugar certo do grid*/
             point *newPoint = malloc(sizeof(point));                      /*ponto a ser inserido*/
             cell *newCell = malloc(sizeof(cell));                         /*célula referente a esse ponto*/
             newPoint->x = (rand()*1.0)/RAND_MAX;     /*insere valores no ponto*/
@@ -188,51 +164,8 @@ int main (int argc, char **argv) {
         if (v == 1) {
             for (c = desconectados; c->next != NULL; c = c->next) {
                 printf ("Point %d:    x=%f, y=%f\n", ++cont, c->next->point->x, c->next->point->y);
-=======
-            n = insertUserPointersInGrid(grid, d);
-		}
-    }
-    
-    /*Atualiza a seed do random*/
-    srand(s);
-    
-    /*Imprime os parâmetros para depuração*/
-    printf("Parametros:\n  n = %d\n  m = %d\n  s = %d\n  d = %f\n  v = %d\n", n, m, s, d, v);
-    
-    if (d != 0) { /*primeira opção*/
-        if (grid == NULL && n != 0) {
-            printf ("Gerando pontos aleatórios....\n");
-            grid = malloc((g+2)*sizeof(cell **));
-            for (i = 0; i<g+2; i++) {
-                grid[i] = malloc((g+2)*sizeof(cell *));
-                for (j=0; j<g+2; j++) {
-                    cell newCell;
-                    newCell.point = NULL;
-                    newCell.prox = NULL;
-                    grid[i][j] = &newCell;
-                }
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
             }
-            insertRandomPointsInGrid (grid, d, n);
         }
-        else if (n == 0) {
-            printf ("Houve um erro no cálculo no número de pontos ou ele não foi fornecido, apesar de ser necessário.\n");
-            return 0;
-        }
-        
-        firstPoint = startingPoint(grid, g);
-        if (firstPoint == NULL) {
-            printf("Houve um erro ao pegar um ponto arbitrário do grafo em que começar o algoritmo.\n");
-            return 0;
-        }
-        
-        cont = linkAround(firstPoint, grid, d);
-        
-        if (cont == n) {
-            printf("O grafo é conexo!!\n");
-            return 0;
-        }
-<<<<<<< HEAD
 
         aux = desconectados->next;
         if (aux == NULL) {
@@ -296,6 +229,12 @@ int main (int argc, char **argv) {
 
         if (cont == 0) printf("O grafo eh conexo para o d escolhido.\n");
         else printf("Ainda existem %d pontos desconectados.\n", cont);
+        
+        
+        
+        
+        
+        
 
         printf("dMax = %f\n", dMax);
 
@@ -410,41 +349,8 @@ int main (int argc, char **argv) {
         }
 
 
-=======
-        else if (cont < n) {
-            printf("O grafo não é conexo.\n");
-            return 0;
-        }
-        else {
-            printf("Houve um erro na implementação do algoritmo. (erro 1)\n");
-            return 0;
-        }
-        
     }
-    
-    
-    return 0;
-}
 
-int linkAround (point *p, cell ***grid, float d) {
-    p->link = 1;
-    cell *s;
-    int cont = 0; int i, j;
-    for (i = p->x/d +1 -1; i <= p->x/d +1 +1; i++) {
-        for (j = p->y/d +1 -1; j <= p->y/d +1 +1; j++) {
-            for (s = grid[i][j]; s->prox != NULL; s = s->prox) {
-                if (s->prox->point->link==0 && squaredDistanceBetween(p, s->prox->point) <= (d*d)) {
-                    s->prox->point->link = 1;
-                    cont = linkAround(s->prox->point, grid, d);
-                }
-            }
-        }
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
-    }
-    return cont ++;
-}
-
-<<<<<<< HEAD
     else if (d > 0) {           /*primeira opção*/
 
         if (grid == NULL && n != 0) {                   /*Se o grid não existir e tivermos N, devemos inicialliza-lo com números aleatórios.*/
@@ -566,52 +472,26 @@ int linkAround (point *p, cell ***grid, float d) {
         }
 
     }
-=======
-void insertRandomPointsInGrid (cell ***grid, float d, int n) {
-    int i = 0;
-    for (i = 0; i < n; i ++) {
-        cell *cab;
-        point newPoint;
-        cell newCell;
-        newPoint.x = (rand()*1.0)/RAND_MAX;
-        newPoint.y = (rand()*1.0)/RAND_MAX;
-        newPoint.link = 0;
-        newCell.point = &newPoint;
-        cab = grid[(int)(newPoint.x/d +1)][(int)(newPoint.y/d +1)];
-        newCell.prox = cab->prox;
-        cab->prox = &newCell;
-    }
-}
->>>>>>> de9c824639d0356015dd38f2fb055154dc8f90c8
 
-int insertUserPointersInGrid (cell ***grid, float d) {
-    
-    int x = 0; int y = 0; int n = 0;
-    while (scanf("%d %d", &x, &y) != EOF) {
-        cell *cab = grid[(int)(x/d +1)][(int)(y/d + 1)]; /*pointeiro para a cabeca da lista do grid na posição em que o novo ponto deve ser inserido*/
-        point newPoint;/*allocação de memória para a nova célula e seu respectivo ponto*/
-        cell newCell;
-        newPoint.x = x;/*insere as informações no novo ponto*/
-        newPoint.y = y;
-        newPoint.link = 0;
-        newCell.point = &newPoint;/*Associa a célula com o ponto*/
-        newCell.prox = cab->prox;/*insere a célula no começo da respeciva lista do grid*/
-        cab->prox = &newCell;
-        n++;/*Incrementa o n, valor que será retornado no fim da função*/
-    }
-    return n;
+
+    return 0;
 }
 
-point *startingPoint (cell ***grid, int g) {
+void initGrid (cell ***grid, int g) {
     int i, j;
-    for (i = 1; i < g+2; i ++) {
-        for (j = 1; j < g+2; j++) {
-            if (grid[i][j]->prox != NULL) {
-                return grid[i][j]->prox->point;
+
+        printf ("Criando o grid....\n");
+        grid = malloc((g+2)*sizeof(cell **));       /*malloc a da 1a dimensao*/
+        for (i = 0; i<g+2; i++) {
+            grid[i] = malloc((g+2)*sizeof(cell *)); /*malloc da 2a*/
+            for (j=0; j<g+2; j++) {                 /*preenche cada espaço com uma célula vazia*/
+                cell *newCell = malloc(sizeof(cell));
+                newCell->point = NULL;
+                newCell->prox = NULL;
+                newCell->next = NULL;
+                grid[i][j] = newCell;
             }
         }
-    }
-    return NULL;
 }
 
 int eSuficiente (float d, cell *desconectados, int n) {
@@ -863,7 +743,6 @@ point *startingPoint (cell ***grid, int g) {
     }
     return NULL;
 }
-
 
 
 
